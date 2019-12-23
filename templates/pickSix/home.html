@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <h3 class="masthead-brand">Pick Six</h3>
+            <nav class="nav nav-masthead justify-content-center">
+                <a class="nav-link active" href="#">Home</a>
+                <a class="nav-link" href="#">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main" class="inner cover">
+        <form action="{% url 'pick_six_selection' %}" method="POST">
+            <div class="container">
+                {% csrf_token %}
+                <div class="form-group">
+                        {{ form.employee | as_crispy_field }}
+                </div>
+                <h1 class="cover-heading">Select your Customers</h1>
+                <div class="form-group">
+                        {{ form.customers | as_crispy_field }}
+                </div>
+                <p class="lead">
+                    <input class="btn btn-lg btn-secondary" type="submit" value="Submit">
+                </p>
+            </div>
+        </form>
+    </main>
+{% endblock %}
